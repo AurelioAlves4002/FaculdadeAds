@@ -44,7 +44,7 @@ int main() {
 
     // Calculando SuperPower da carta 1
 
-    SuperPower = (float)populacao + area + pib + pontoTuristico + pibPerCapita + densidadePopulacional;
+    SuperPower = (float)populacao + area + pib + pontoTuristico + pibPerCapita - densidadePopulacional;
 
     // fim carta 1
 
@@ -92,7 +92,7 @@ int main() {
 
     // calculando SuperPower da carta 2
 
-    SuperPower2 = (float)populacao2 + area2 + pib2 + pontoTuristico2 + pibPerCapita2 + densidadePopulacional2;
+    SuperPower2 = (float)populacao2 + area2 + pib2 + pontoTuristico2 + pibPerCapita2 - densidadePopulacional2;
 
     // fim carta 2
 
@@ -123,14 +123,13 @@ int main() {
     printf("SuperPower: %.2f\n", SuperPower2);
 
     // Comparando as duas cartas
-    printf("Comparacao entre as duas cartas:\n");
-    printf("Populacao: %s\n", (populacao > populacao2) ? "Carta 1 maior" : (populacao < populacao2) ? "Carta 2 maior" : "Empate");
-    printf("Area: %s\n", (area > area2) ? "Carta 1 maior" : (area < area2) ? "Carta 2 maior" : "Empate");
-    printf("PIB: %s\n", (pib > pib2) ? "Carta 1 maior" : (pib < pib2) ? "Carta 2 maior" : "Empate");
-    printf("Pontos Turisticos: %s\n", (pontoTuristico > pontoTuristico2) ? "Carta 1 maior" : (pontoTuristico < pontoTuristico2) ? "Carta 2 maior" : "Empate");
-    printf("Densidade Populacional: %s\n", (densidadePopulacional > densidadePopulacional2) ? "Carta 1 maior" : (densidadePopulacional < densidadePopulacional2) ? "Carta 2 maior" : "Empate");
-    printf("PIB per Capita: %s\n", (pibPerCapita > pibPerCapita2) ? "Carta 1 maior" : (pibPerCapita < pibPerCapita2) ? "Carta 2 maior" : "Empate");
-    printf("SuperPower: %s\n", (SuperPower > SuperPower2) ? "Carta 1 maior" : (SuperPower < SuperPower2) ? "Carta 2 maior" : "Empate");
+    if (SuperPower > SuperPower2) {
+        printf("O %s e mais forte: %.2f\n", estado, SuperPower);
+    } else if (SuperPower < SuperPower2) {
+        printf("O %s e mais forte: %.2f\n", estado2, SuperPower2);
+    } else {
+        printf("As duas cartas tem a mesma forca.\n");
+    }
 
     return 0;
 }
