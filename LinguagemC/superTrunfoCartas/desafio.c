@@ -24,7 +24,7 @@ int main() {
     cidade[strcspn(cidade, "\n")] = 0; // Remover o newline lido pelo fgets, se presente
 
     printf("Digite a populacao: ");
-    scanf("%d", &populacao);
+    scanf("%lu", &populacao);
     getchar(); // Consumir o newline deixado pelo scanf
 
     printf("Digite a area (em km): ");
@@ -71,7 +71,7 @@ int main() {
     cidade2[strcspn(cidade2, "\n")] = 0; // Remover o newline lido pelo fgets, se presente
 
     printf("Digite a populacao: ");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
     getchar(); // Consumir o newline deixado pelo scanf
 
     printf("Digite a area (em km): ");
@@ -123,8 +123,8 @@ int main() {
     printf("SuperPower: %.2f\n", SuperPower2);
 
     // Menu de comparação das cartas
-    
-    printf("Escolha a categoria para comparar as cartas:\n");
+
+    printf("Escolha um atributo para a comparacao:\n");
     printf("1 - Populacao\n");
     printf("2 - Area\n");
     printf("3 - PIB\n");
@@ -133,84 +133,107 @@ int main() {
     printf("6 - PIB per Capita\n");
     printf("7 - SuperPower\n");
 
-    int escolha;
-    scanf("%d", &escolha);
+    int escolha1, resultado1, resultado2;
+    scanf("%d", &escolha1);
 
-    switch (escolha)
+    switch (escolha1)
     {
     case 1:
-        if (populacao > populacao2) {
-            printf("A primeira carta vence.\n");
-        } else if (populacao < populacao2) {
-            printf("A segunda carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado1 = populacao > populacao2 ? 1 : 0;
         break;
 
     case 2:
-        if (area > area2) {
-            printf("A primeira carta vence.\n");
-        } else if (area < area2) {
-            printf("A segunda carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado1 = area > area2 ? 1 : 0;
         break;
 
     case 3:
-        if (pib > pib2) {
-            printf("A primeira carta vence.\n");
-        } else if (pib < pib2) {
-            printf("A segunda carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado1 = pib > pib2 ? 1 : 0;
+        break;
+    case 4:
+        resultado1 = pontoTuristico > pontoTuristico2 ? 1 : 0;
+        break;
+    case 5:
+        resultado1 = densidadePopulacional > densidadePopulacional2 ? 0 : 1;
+        break;
+    case 6:
+        resultado1 = pibPerCapita > pibPerCapita2 ? 1 : 0;
+        break;
+    case 7:
+        resultado1 = SuperPower > SuperPower2 ? 1 : 0;
+        break;
+    default:
+        printf("Escolha invalida!\n");
+        break;
+    }
+
+    printf("Escolha o segundo atributo para a comparacao:\n");
+    printf("Atencao: Voce deve escolher um atributo diferente do primeiro.\n");
+    printf("1 - Populacao\n");
+    printf("2 - Area\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos Turisticos\n");
+    printf("5 - Densidade Populacional\n");
+    printf("6 - PIB per Capita\n");
+    printf("7 - SuperPower\n");
+
+    int escolha2;
+    scanf("%d", &escolha2);
+
+    // Verificando se a escolha do segundo atributo é diferente do primeiro
+    if (escolha2 == escolha1)
+    {
+        printf("Escolha um atributo diferente do primeiro.\n");
+        return 1;
+    } else { 
+        switch (escolha2)
+    {
+    case 1:
+        resultado2 = populacao > populacao2 ? 1 : 0;
+        break;
+
+    case 2:
+        resultado2 = area > area2 ? 1 : 0;
+        break;
+
+    case 3:
+        resultado2 = pib > pib2 ? 1 : 0;
         break;
 
     case 4:
-        if (pontoTuristico > pontoTuristico2) {
-            printf("A primeira carta vence.\n");
-        } else if (pontoTuristico < pontoTuristico2) {
-            printf("A segunda carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado2 = pontoTuristico > pontoTuristico2 ? 1 : 0;
         break;
 
     case 5:
-        if (densidadePopulacional > densidadePopulacional2) {
-            printf("A segunda carta vence.\n");
-        } else if (densidadePopulacional < densidadePopulacional2) {
-            printf("A primeira carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado2 = densidadePopulacional > densidadePopulacional2 ? 0 : 1;
         break;
 
     case 6:
-        if (pibPerCapita > pibPerCapita2) {
-            printf("A primeira carta vence.\n");
-        } else if (pibPerCapita < pibPerCapita2) {
-            printf("A segunda carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado2 = pibPerCapita > pibPerCapita2 ? 1 : 0;
         break;
 
     case 7:
-        if (SuperPower > SuperPower2) {
-            printf("A primeira carta vence.\n");
-        } else if (SuperPower < SuperPower2) {
-            printf("A segunda carta vence.\n");
-        } else {
-            printf("Deu em empate.\n");
-        }
+        resultado2 = SuperPower > SuperPower2 ? 1 : 0;
         break;
 
-    default: 
+    default:
         printf("Escolha invalida!\n");
         break;
+    }
+
+    }
+    
+    // Exibindo o resultado da comparacao
+    if (resultado1 == 1 && resultado2 == 1)
+    {
+        printf("A primeira carta vence.\n");
+    }
+    else if (resultado1 == 0 && resultado2 == 0)
+    {
+        printf("A segunda carta vence.\n");
+    }
+    else
+    {
+        printf("Deu em empate.\n");
     }
 
     return 0;
